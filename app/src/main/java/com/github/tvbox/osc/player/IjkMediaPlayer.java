@@ -59,8 +59,10 @@ public class IjkMediaPlayer extends IjkPlayer {
                 mMediaPlayer.setOption(1, "infbuf", 1);
                 mMediaPlayer.setOption(1, "rtsp_transport", "tcp");
                 mMediaPlayer.setOption(1, "rtsp_flags", "prefer_tcp");
-            } else if (!TextUtils.isEmpty(path) && !path.contains(".m3u8") && (path.contains(".mp4") || path.contains(".mkv") || path.contains(".avi"))) {
-                String cachePath = FileUtils.getExternalCachePath() + "/ijkcaches/";
+            } else if (!TextUtils.isEmpty(path)
+                    && !path.contains(".m3u8")
+                    && (path.contains(".mp4") || path.contains(".mkv") || path.contains(".avi"))) {
+                String cachePath = FileUtils.getCachePath() + "/ijkcaches/";
                 String cacheMapPath = cachePath;
                 File cacheFile = new File(cachePath);
                 if (!cacheFile.exists()) cacheFile.mkdirs();
@@ -71,6 +73,8 @@ public class IjkMediaPlayer extends IjkPlayer {
                 mMediaPlayer.setOption(tv.danmaku.ijk.media.player.IjkMediaPlayer.OPT_CATEGORY_FORMAT, "cache_map_path", cacheMapPath);
                 mMediaPlayer.setOption(tv.danmaku.ijk.media.player.IjkMediaPlayer.OPT_CATEGORY_FORMAT, "parse_cache_map", 1);
                 mMediaPlayer.setOption(tv.danmaku.ijk.media.player.IjkMediaPlayer.OPT_CATEGORY_FORMAT, "auto_save_map", 1);
+                mMediaPlayer.setOption(tv.danmaku.ijk.media.player.IjkMediaPlayer.OPT_CATEGORY_FORMAT, "cache_max_capacity", 100 * 1024 * 1024);
+                mMediaPlayer.setOption(tv.danmaku.ijk.media.player.IjkMediaPlayer.OPT_CATEGORY_FORMAT, "cache_file_forwards_capacity", 20 * 1024 * 1024);
                 path = "ijkio:cache:ffio:" + path;
             }
         } catch (Exception e) {
