@@ -3,7 +3,7 @@ name: Merge upstream
 on:
   push:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: '0 0 0 1 1/1 ? *'
   workflow_dispatch: # on button click
 
 jobs:
